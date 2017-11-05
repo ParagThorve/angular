@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+ </head>
+ <body ng-app="myApp">
+  <div ng-controller="myCtrl">
+   <p>First Name : <input type="text" ng-model="firstName" /></p>
+   <p>Last Name : <input type="text" ng-model="lastName" /></p>
+   <h1>Hello {{firstName + " " + lastName}}</h1>
+   <p>Uppercase: {{firstName + " " + lastName | uppercase}}</p>
+   <p>Lowercase: {{firstName + " " + lastName | lowercase}}</p>
+   
+  </div>
+  <hr>
+  <div ng-controller="myColor">
+   <p>Write color name in input box to set it`s background color </p>
+   <input style="background-color:{{colorName}}" ng-model="colorName" />
+  </div>
+  <hr>
+  <form ng-controller="myForm" name="myForm">
+	<p>Email validation</p>
+	Email : 
+	<input type="email" name="myAddress" ng-model="text" />
+	<span ng-show="myForm.myAddress.$error.email">Not a valid email adddress</span>
+  </form>
+  <hr>
+  <div ng-controller="namesCtrl">
+	<p>Enter letter in input field:</p>
+	<p><input type="text" ng-model="test" /></p>
+	<ul>
+		<li ng-repeat="x in names | filter:test">
+			{{x}}
+		</li>
+	</ul>
+	<p>The list will only consist of names matching the filter </p>
+  </div>
+  <hr>
+ </body>
+ <script>
+  var app = angular.module("myApp",[]);
+  app.controller("myCtrl",function($scope) {
+		$scope.firstName="Parag";
+		$scope.lastName="Thorve";
+  });
+  app.controller("myColor",function($scope){
+		$scope.colorName="powderblue";
+  });
+  app.controller("myForm",function($scope){
+  
+  });
+  app.controller("namesCtrl",function($scope){
+		$scope.names = [
+			'Maharastra',
+			'Gujarat',
+			'Karnatak',
+			'Keral',
+			'Tamilnadu',
+			'Odisa',
+			'Rajasthan',
+			'Punjab',
+			'Hariyana'
+		];
+  });
+ </script>
+</html>
